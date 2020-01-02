@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xza.movie.mapper.MovieMapper">
+    <resultMap id="all_movies" type="com.xza.movie.model.movies">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"></id>
+        <result column="movie_name" property="movie_name" javaType="java.lang.String" jdbcType="VARCHAR"></result>
+        <result column="movie_author" property="movie_author" javaType="java.lang.String" jdbcType="VARCHAR"></result>
+        <result column="movie_type" property="movie_type" javaType="java.lang.String" jdbcType="VARCHAR"></result>
+        <result column="movie_poster" property="movie_poster" javaType="java.lang.String" jdbcType="VARCHAR"></result>
+        <result column="movie_time" property="movie_time" javaType="java.lang.String" jdbcType="VARCHAR"></result>
+        <result column="movie_actor" property="movie_actor" javaType="java.lang.String" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="selectAllMovies" resultMap="all_movies">
+        select * from movies
+    </select>
+
+    <insert id="insertMovie" parameterType="com.xza.movie.model.movies">
+        insert into movies
+        (movie_name,movie_author,movie_type,movie_poster,movie_time,movie_actor)
+        values
+        (#{movie_name},#{movie_author},#{movie_type},#{movie_poster},#{movie_time},#{movie_actor})
+    </insert>
+
+    <select id="selectMovieBymovie_name" parameterType="java.lang.String" resultType="com.xza.movie.model.movies">
+        select * from movies
+        where
+        movie_name = #{movie_name}
+    </select>
+
+    <select id="selectAuthor" parameterType="java.lang.String" resultType="com.xza.movie.model.movies">
+        select movie_author from movies
+        where
+        movie_name = #{movie_name}
+    </select>
+
+    <select id="selectType" parameterType="java.lang.String" resultType="com.xza.movie.model.movies">
+        select movie_type from movies
+        where
+        movie_name = #{movie_name}
+    </select>
+
+    <select id="selectPoster" parameterType="java.lang.String" resultType="com.xza.movie.model.movies">
+        select movie_poster from movies
+        where
+        movie_name = #{movie_name}
+    </select>
+
+    <select id="selectTime" parameterType="java.lang.String" resultType="com.xza.movie.model.movies">
+        select movie_time from movies
+        where
+        movie_name = #{movie_name}
+    </select>
+
+    <select id="selectActor" parameterType="java.lang.String" resultType="com.xza.movie.model.movies">
+        select movie_actor from movies
+        where
+        movie_name = #{movie_name}
+    </select>
+
+</mapper>
